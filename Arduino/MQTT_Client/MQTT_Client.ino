@@ -56,7 +56,10 @@
  * @section libraries_mqtt_client_ino Libraries
  * - *WiFiNINA* Arduino Library
  *   - https://www.arduino.cc/en/Reference/WiFiNINA
- *   - Provides access to the Arduino Uno WiFi Rev2 on-board WiFi module.
+ *   - Provides access to the Arduino UNO WiFi Rev2 on-board WiFi module.
+ * - *WiFiS3* Arduino Library
+ *   - https://www.arduino.cc/en/Reference/WiFiS3
+ *   - Provides access to the Arduino UNO R4 WiFi on-board WiFi module.
  * - *PubSubClient* Contributed Library
  *   - https://github.com/knolleary/pubsubclient
  *   - Provides MQTT client connectivity.
@@ -66,7 +69,7 @@
  *
  * @section notes_mqtt_client_ino Notes
  * - Include the appropriate WiFi library if you are using a board other than
- *   the *Arduino Uno WiFi Rev2*.
+ *   the *Arduino UNO R4 WiFi* or *Arduino UNO WiFi Rev2*.
  * - Comments are Doxygen compatible.
  *
  * @section todo_mqtt_client_ino TODO
@@ -74,14 +77,18 @@
  *
  * @section author_mqtt_client_ino Author(s)
  * - Created by John Woolsey on 06/16/2023.
- * - Modified by John Woolsey on 07/31/2023.
+ * - Modified by John Woolsey on 09/07/2023.
  *
  * Copyright (c) 2023 Woolsey Workshop.  All rights reserved.
  */
 
 
 // Includes
-#include <WiFiNINA.h>
+#if defined(ARDUINO_UNOWIFIR4)
+   #include <WiFiS3.h>
+#elif defined(ARDUINO_AVR_UNO_WIFI_REV2)
+   #include <WiFiNINA.h>
+#endif
 #include <PubSubClient.h>
 #include "secrets.h"
 
